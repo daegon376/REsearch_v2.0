@@ -42,9 +42,9 @@ def locate_deletion(refseq, reg_exp, del_length, unique_reads):
     mask_end = mask_start + len(masked_seq_on_refseq)
 
     if refseq[mask_start:mask_end] == masked_seq_on_refseq:
-        print('УСПЕШНО НАШЛИ МЕСТО НА РЕФСЕКЕ!!!')
+        print('УСПЕШНО НАШЛИ МЕСТО НА РЕФСЕКЕ')
     else:
-        print('чета хуйня какая-то с индексами')
+        print('проблема с индексами')
 
     list_masked_seq_on_read = []
     for read in unique_reads:
@@ -57,7 +57,7 @@ def locate_deletion(refseq, reg_exp, del_length, unique_reads):
     if len(list_masked_seq_on_read) >> 1:
         print('у уникальных ридов разные маскированные последовательности')
     else:
-        print('у уникальных ридов ОДНА И ТАЖЕ маскированная последовательность, МАТЬ ЁЁ!!!')
+        print('у уникальных ридов ОДНА И ТАЖЕ маскированная последовательность')
 
     shift = gap_shift(masked_seq_on_refseq, list_masked_seq_on_read[0])
     del_actual_start = mask_start + shift[0]
@@ -67,7 +67,6 @@ def locate_deletion(refseq, reg_exp, del_length, unique_reads):
     if refseq[mask_start:del_actual_start] == list_masked_seq_on_read[0][:shift[0]] \
             and refseq[del_actual_end:mask_end] == list_masked_seq_on_read[shift[1]:]:
         #       от дел до конца маски на рефсеке     # от дел до конца маски на риде
-        print('все гуд!!!')
     else:
         print('ошибка с индексами')
 
